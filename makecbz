@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+if [ "$#" -eq "0" ]; then
+    echo "Uso: $0 <diretório>" > /dev/stderr
+    exit 2
+fi
+
+if [ "$#" -ne "1" ]; then
+    echo "ERRO: Quantidade inválida de argumentos" > /dev/stderr
+    exit 2
+fi
+
+if [ ! -d "$1" ]; then
+    echo "ERRO: \"$1\" não é um diretório" > /dev/stderr
+    exit 2
+fi
+
+filename="$(basename "$1").cbz"
+if [ -e "$filename" ]; then
+    echo "ERRO: \"$filename\" já existe" > /dev/stderr
+    exit 2
+fi
+
+zip -Xr9D "$filename" "$1"
