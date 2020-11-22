@@ -1,0 +1,22 @@
+#!/bin/sh -e
+
+if [ "$#" -gt "1" ]; then
+    echo "ERRO: Quantidade inválida de argumentos" > /dev/stderr
+    exit 2
+fi
+
+if [ -n "$1" ]; then
+    filename="$1.epub"
+else
+    filename="$(basename "$(realpath .)").epub"
+fi
+
+if [ -e "$filename" ]; then
+    echo "ERRO: \"$filename\" já existe" > /dev/stderr
+    exit 2
+fi
+
+zip -X0 "$filename" mimetype
+zip -XD9rg "$filename" META-INF
+[ -e OEBPS ] && zip -XD9rg "$filename" OEBPS
+[ -e EPUB ] && zip -XD9rg "$filename" EPUB

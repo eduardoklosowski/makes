@@ -13,3 +13,17 @@ Scripts para criar alguns tipos de arquivos.
 ```sh
 makecbz diretório
 ```
+
+## EPUB (.epub)
+
+- **Script:** `makeepub`
+- **Argumento:** Nome do arquivo do livro (Padrão: nome do diretório atual)
+- **Saída:** `$1.epub`
+
+**Nota:** `mimetype`, `META-INF` e `EPUB` devem estar no diretório atual.
+
+**Exemplo:**
+
+```sh
+makeepub
+```
